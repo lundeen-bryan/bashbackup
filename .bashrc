@@ -8,6 +8,9 @@ alias list="ls -1ASk"
 # quit bash like in vim
 alias :q="exit"
 
+# clear screen
+alias clr="clear"
+
 if [ "$TERM" = "linux" ]; then
     echo -en "\e]P0232323" #black
     echo -en "\e]P82B2B2B" #darkgrey
