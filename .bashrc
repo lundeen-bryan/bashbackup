@@ -3,10 +3,21 @@ echo "~/.bashbackup/.bashrc is loaded"
 # use vim keybindings in bash
 set -o vi
 
-# list files per line
-alias list="ls -1ASk"
-# quit bash like in vim
-alias :q="exit"
+# Alias definitions.
+# Put all aliases into a separate file
+if [ -f ~/.bashbackup/.bash_aliases ]; then
+    . ~/.bashbackup/.bash_aliases
+fi
+
+# don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+#set history size
+HISTSIZE=1000
+HISTFILESIZE=2000
 
 if [ "$TERM" = "linux" ]; then
     echo -en "\e]P0232323" #black
