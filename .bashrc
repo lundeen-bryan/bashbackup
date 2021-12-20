@@ -19,9 +19,6 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# clear screen
-alias clr="clear"
-
 if [ "$TERM" = "linux" ]; then
     echo -en "\e]P0232323" #black
     echo -en "\e]P82B2B2B" #darkgrey
@@ -41,6 +38,10 @@ if [ "$TERM" = "linux" ]; then
     echo -en "\e]PFFFFFFF" #white
     clear #for background artifacting
 fi
+
+# Add vscode to the bash path so that I can type "code ." in a directory
+# and it will open that directory in vscode
+export PATH=$PATH:C:\Users\bigbry\AppData\Local\Programs\Microsoft VS Code\bin
 
 ## Colours have names too. Stolen from Arch wiki
 #txtblk='\[\e[0;30m\]' # Black - Regular
