@@ -3,6 +3,9 @@ echo "~/.bashbackup/.bashrc is loaded"
 # use vim keybindings in bash
 set -o vi
 
+#use "jk" in normal mode to Esc
+bind '"jk":vi-movement-mode'
+
 # Alias definitions.
 # Put all aliases into a separate file
 if [ -f ~/.bashbackup/.bash_aliases ]; then
