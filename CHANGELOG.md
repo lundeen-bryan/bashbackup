@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning].
 
 - /
 
+## [0.0.2] - 2023-09-24
+
+### Changed
+
+- Changed the bash shortcut to create a virtual environment because it had an extra slash in it.
+
 ## [0.0.1] - 2023-09-15
 
 - initial release

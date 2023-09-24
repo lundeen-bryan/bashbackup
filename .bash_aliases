@@ -20,7 +20,7 @@ alias listmod="ls -t -1"
 alias filecount="find . -type f | wc -l"
 # create python virtual environment
 alias ve="python3 -m venv .venv"
-alias va="source ./venv/Scripts/activate"
+alias va="source .venv/Scripts/activate"
 # Navigate up one level
 alias ..='cd ..'
 # Show Git status
