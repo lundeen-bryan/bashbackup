@@ -35,9 +35,7 @@ gitfiles2clip() {
 # a file in a the native windows app
 alias :e="explorer"
 # shortcut to documents folder
-alias docs="/c/Users/lunde/documents/"
+alias docs='cd ~/documents/'
 # shortcut to downloads folder
-alias dl="/c/Users/lunde/downloads"
-
-
+alias dl='cd ~/downloads/'
 
