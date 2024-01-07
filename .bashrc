@@ -44,7 +44,7 @@ fi
 
 # Add vscode to the bash path so that I can type "code ." in a directory
 # and it will open that directory in vscode
-export PATH=$PATH:C:\Users\bigbry\AppData\Local\Programs\Microsoft VS Code\bin
+export PATH=$PATH:C:\Users\lunde\AppData\Local\Programs\Microsoft VS Code\bin
 
 ## Colours have names too. Stolen from Arch wiki
 #txtblk='\[\e[0;30m\]' # Black - Regular

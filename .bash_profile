@@ -14,3 +14,7 @@ else
     source ~/.bashrc
 fi
 
+export MAMBA_EXE='/c/Users/lunde/.micromamba/Library/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/c/Users/lunde/.micromamba';
+eval "$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_ROOT_PREFIX")"
+
