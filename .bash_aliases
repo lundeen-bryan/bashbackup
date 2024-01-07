@@ -21,7 +21,8 @@ alias filecount="find . -type f | wc -l"
 # create python virtual environment
 alias ve="python3 -m venv .venv"
 alias va="source .venv/Scripts/activate"
-alias menv="micromamba activate .venv"
+alias menv='env_folder=$(find . -maxdepth 1 -type d -name .venv); if [ -n "$env_folder" ]; then micromamba activate "$env_folder"; else echo "No .venv folder found in the current directory."; fi'
+
 # Navigate up one level
 alias ..='cd ..'
 # Show Git status
