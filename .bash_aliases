@@ -23,6 +23,9 @@ alias ve="python3 -m venv .venv"
 alias va="source .venv/Scripts/activate"
 alias menv='env_folder=$(find . -maxdepth 1 -type d -name .venv); if [ -n "$env_folder" ]; then micromamba activate "$env_folder"; else echo "No .venv folder found in the current directory."; fi'
 
+# Login to MySQL
+alias loginMySQL='MySQL -u root -p'
+
 # Navigate up one level
 alias ..='cd ..'
 # Show Git status
