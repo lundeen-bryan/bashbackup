@@ -42,6 +42,17 @@ if [ "$TERM" = "linux" ]; then
     clear #for background artifacting
 fi
 
+# Set the terminal prompt
+# PS1='\[\033]0;New Git Bash Title:$PWD\007\]' # change Git Bash window title
+# PS1="$PS1"'\n'           # new line
+# PS1="$PS1"'\[\033[32m\]' # change Git Bash prompt color to green
+# PS1="$PS1"'lundeen-bryan > ' # Change Git Bash shere user@host<space> setting
+# PS1="$PS1"'\[\033[35m\]' # change Git Bash shell color to purple
+# PS1="$PS1"'Not Ming32 '  # change Git Bash shell MING64 display
+# PS1="$PS1"'\[\033[33m\]' # change Git Bash Prompt color to brownish yellow
+# PS1="$PS1"'\w' # Display Git Bash prompt'scurrent working directory
+# PS1='\[\033[32m\]''Location: \w\n> ' # Display Git Bash with just directory path and > symbol
+
 # Add vscode to the bash path so that I can type "code ." in a directory
 # and it will open that directory in vscode
 export PATH=$PATH:C:\Users\lunde\AppData\Local\Programs\Microsoft VS Code\bin
