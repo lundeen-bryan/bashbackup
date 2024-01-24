@@ -1,27 +1,49 @@
+# 1. Notification
+# This line outputs a message to the terminal when the .bashrc file is loaded.
+# It is useful for confirming that the .bashrc file is being sourced correctly.
 echo "~/.bashbackup/.bashrc is loaded"
 
-# use vim keybindings in bash
+# 2. Vim Keybindings
+# This command enables Vim-style keybindings in the bash shell.
+# It allows you to use Vim's command mode for editing commands in the terminal.
 set -o vi
 
-#use "jk" in normal mode to Esc
+# 3. Custom Key Binding
+# This binds the "jk" key sequence to exit insert mode and enter normal mode in the shell.
+# It's a shortcut for Vim users to quickly switch modes in the bash shell.
 bind '"jk":vi-movement-mode'
 
-# Alias definitions.
+# 4. Alias Loading
+# This section checks if a .bash_aliases file exists and sources it to load aliases.
+# If the file is not found, it outputs a warning message.
+# This keeps aliases separate and organized in a different file.
 # Put all aliases into a separate file
 if [ -f ~/.bashbackup/.bash_aliases ]; then
     . ~/.bashbackup/.bash_aliases
+else
+	echo "Warning: Unable to load .bash_aliases from ~/.bashbackup/"
 fi
 
-# don't put duplicate lines or lines starting with space in the history.
+# 5. History Control
+# This sets the 'ignoreboth' option for the command history.
+# 'ignoreboth' is shorthand for 'ignorespace' and 'ignoredups',
+# preventing commands that start with a space and duplicate commands from being saved in history.
 HISTCONTROL=ignoreboth
 
-# append to the history file, don't overwrite it
+# 6. History Append
+# This option ensures that bash appends to the history file, rather than overwriting it.
+# It preserves the command history across different sessions.
 shopt -s histappend
 
-#set history size
+# 7. History Size Configuration
+# Sets the maximum number of commands to save in the command history (HISTSIZE).
+# Also sets the maximum size of the history file (HISTFILESIZE).
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+# 8. Terminal Colors for Linux
+# This section sets custom colors for the terminal when using the 'linux' terminal type.
+# It defines colors for different elements like text and background, improving readability and aesthetics.
 if [ "$TERM" = "linux" ]; then
     echo -en "\e]P0232323" #black
     echo -en "\e]P82B2B2B" #darkgrey
@@ -41,8 +63,11 @@ if [ "$TERM" = "linux" ]; then
     echo -en "\e]PFFFFFFF" #white
     clear #for background artifacting
 fi
-
-# Set the terminal prompt
+# Section 9: Custom Terminal Prompt
+# Various options for customizing the bash prompt (PS1).
+# Includes settings for window title, newline, colors, and the format of the prompt.
+# Users can uncomment the preferred configuration.
+# 9. Set the terminal prompt. Comment out any prompt you don't want to use.
 # PS1='\[\033]0;New Git Bash Title:$PWD\007\]' # change Git Bash window title
 # PS1="$PS1"'\n'           # new line
 # PS1="$PS1"'\[\033[32m\]' # change Git Bash prompt color to green
@@ -53,11 +78,15 @@ fi
 # PS1="$PS1"'\w' # Display Git Bash prompt'scurrent working directory
 # PS1='\[\033[32m\]''Location: \w\n> ' # Display Git Bash with just directory path and > symbol
 
-# Add vscode to the bash path so that I can type "code ." in a directory
-# and it will open that directory in vscode
+# 10. Path Extension for VS Code
+# Adds Visual Studio Code's binary location to the system PATH.
+# This allows VS Code to be launched from the terminal using the 'code' command.
 export PATH=$PATH:C:\Users\lunde\AppData\Local\Programs\Microsoft VS Code\bin
 
-## Colours have names too. Stolen from Arch wiki
+# 11. Additional Color Codes
+# Defines a set of color variables for use in customizing the terminal.
+# These colors can be used in prompts, echoing messages, etc.
+# Currently commented out, but can be enabled as needed.
 #txtblk='\[\e[0;30m\]' # Black - Regular
 #txtred='\[\e[0;31m\]' # Red
 #txtgrn='\[\e[0;32m\]' # Green
@@ -100,9 +129,21 @@ export PATH=$PATH:C:\Users\lunde\AppData\Local\Programs\Microsoft VS Code\bin
 #gitC="${txtpur}"
 #pointerC="${txtgrn}"
 #normalC="${txtwht}"
-#
-## Red name for root
+
+# 12. Root User Prompt Color
+# Changes the color of the prompt when logged in as the root user.
+# This is a safety feature to make it clear when operating with root privileges.
+# The prompt color is set to red for high visibility.
 #if [ "${UID}" -eq "0" ]; then
 #  nameC="${txtred}"
 #fi
 #
+
+# Ensure we can use Windows clipboard in bash
+if grep -q Microsoft /proc/version; then
+    # Environment is WSL
+    export CLIP_CMD="/mnt/c/Windows/System32/clip.exe"
+else
+    # For other systems, adjust as necessary
+    export CLIP_CMD="/c/Windows/System32/clip.exe"  # assuming 'clip' is available in the PATH
+fi

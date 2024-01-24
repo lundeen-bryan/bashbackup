@@ -1,46 +1,73 @@
-# list files per line
-alias lf="ls -1ASk"
-# list files per line include "." files
-alias lfa="ls -1ASka"
-# quit bash like in vim
-alias :q="exit"
-# clear the screen
-alias clr="clear"
-# run ipython with vi
-alias ipy="ipython --TerminalInteractiveShell.editing_mode='vi'"
-# show grep history
-alias gh="history|grep"
-# show enter history
-alias hist='history'
-# list files by size
-alias listsize="ls --human-readable --size -1 -S --classify"
-# list files by mod date
-alias listmod="ls -t -1"
-# show file count
-alias filecount="find . -type f | wc -l"
-# create python virtual environment
-alias ve="python3 -m venv .venv"
-alias va="source .venv/Scripts/activate"
-alias menv='env_folder=$(find . -maxdepth 1 -type d -name .venv); if [ -n "$env_folder" ]; then micromamba activate "$env_folder"; else echo "No .venv folder found in the current directory."; fi'
+# 1. Inform user that the bash_aliases are loaded
+echo "~/.bashbackup/.bash_aliases loaded"
 
-# Login to MySQL
+# 2. Ensure that the bash_functions are loaded for reference
+# if [ -f ~/.bash_functions ]; then
+source ~/.bashbackup/.bash_functions
+# fi
+
+# 3. List files per line
+alias lf="ls -1ASk"
+
+# 4. List files per line including hidden files
+alias lfa="ls -1ASka"
+
+# 5. Quit bash using a Vim-like command
+alias :q="exit"
+
+# 6. Clear the terminal screen
+alias clr="clear"
+
+# 7. Run IPython with Vim keybindings
+alias ipy="ipython --TerminalInteractiveShell.editing_mode='vi'"
+
+# 8. Grep through command history
+alias gh="history|grep"
+
+# 9. Display command history
+alias hist='history'
+
+# 10. List files sorted by size
+alias listsize="ls --human-readable --size -1 -S --classify"
+
+# 11. List files sorted by modification date
+alias listmod="ls -t -1"
+
+# 12. Count number of files in the current directory
+alias filecount="find . -type f -not -path '*/.*' | wc -l"
+
+# 13. Create a Python virtual environment
+alias ve="python3 -m venv .venv"
+
+# 14. Activate the Python virtual environment
+alias va="source .venv/Scripts/activate"
+
+# 15. Show user all the aliases available
+alias alias_help="alias_help"
+
+# 16. Login to MySQL
 alias loginMySQL='MySQL -u root -p'
 
-# Navigate up one level
+# 17. Navigate up one directory level
 alias ..='cd ..'
-# Show Git status
+
+# 18. Show Git status
 alias gs='git status'
-# Navigate to the downloads folder
-alias myal='cat ~/.bashbackup/.bash_aliases'
-gitfiles2clip() {
-    git status --porcelain | awk '{print $2}' | tr '\n' ' ' | clip
-    echo "Files modified in git have been copied to the clipboard."
-}
-# shortcut to start explorer to open
-# a file in a the native windows app
+
+# 19. Open files in Windows Explorer
 alias :e="explorer"
-# shortcut to documents folder
+
+# 20. Shortcut to navigate to the Documents folder
 alias docs='cd ~/documents/'
-# shortcut to downloads folder
+
+# 21. Shortcut to navigate to the Downloads folder
 alias dl='cd ~/downloads/'
 
+# 22. Activate the virtual environment if created in micromamba
+alias menv="menv"
+
+# 23. Copy all files changed in Git to the clipboard
+alias gitfiles2clip="gitfiles2clip"
+
+# 24. Count files that are hidden only
+alias hiddenfilecount="find . -type f -name '.*' | wc -l"
