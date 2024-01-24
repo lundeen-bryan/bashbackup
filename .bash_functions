@@ -1,4 +1,5 @@
 echo "~/.bashbackup/.bash_functions loaded"
+echo "To see all aliases type alias_help in the terminal."
 
 alias_help() {
     echo ""
