@@ -232,5 +232,5 @@ echo "~/.bashbackup/.bashrc is loaded"
 # FUNCTION CALLS BELOW THIS LINE
 
 # check if terminal supports color
-check_terminal_color_support
+check_and_set_color_prompt
 
