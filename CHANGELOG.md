@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning].
 
 - /
 
+## [2.0.0] - 2024-01-26
+
+### Added
+
+- Added messages to startup prompt including WSL support
+
 ## [1.0.2] - 2024-01-24
 
 ### Changed

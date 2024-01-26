@@ -1,6 +1,3 @@
-echo "~/.bashbackup/.bash_functions loaded"
-echo "To see all aliases type alias_help in the terminal."
-
 alias_help() {
     echo ""
     echo "Twenty-two (22) defined aliases:"
@@ -43,3 +40,8 @@ gitfiles2clip() {
     git status --porcelain | awk '{print $2}' | tr '\n' ' ' | $CLIP_CMD
     echo "Files modified in git have been copied to the clipboard."
 }
+
+# NOTIFICATIONS #################################
+
+echo "✅ bash_functions loaded"
+echo "👀 To see all aliases type alias_help in the terminal."

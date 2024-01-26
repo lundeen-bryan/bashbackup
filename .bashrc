@@ -2,10 +2,10 @@
 # 1. Interactive mode check
 case $- in
     *i*)
-	echo "This is an interactive shell."
+	echo "🔔 This is an interactive shell."
 	;;
       *)
-	echo "This is a non-interactive shell."
+	echo "🔕 This is a non-interactive shell."
 	return
 	;;
 esac
@@ -28,7 +28,7 @@ bind '"jk":vi-movement-mode'
 if [ -f ~/.bashbackup/.bash_aliases ]; then
     . ~/.bashbackup/.bash_aliases
 else
-	echo "Warning: Unable to load .bash_aliases from ~/.bashbackup/"
+	echo "⛔ Warning: Unable to load .bash_aliases from ~/.bashbackup/"
 fi
 
 # 5. History Control
@@ -96,56 +96,56 @@ export PATH=$PATH:C:\Users\lunde\AppData\Local\Programs\Microsoft VS Code\bin
 # Defines a set of color variables for use in customizing the terminal.
 # These colors can be used in prompts, echoing messages, etc.
 # Currently commented out, but can be enabled as needed.
-#txtblk='\[\e[0;30m\]' # Black - Regular
-#txtred='\[\e[0;31m\]' # Red
-#txtgrn='\[\e[0;32m\]' # Green
-#txtylw='\[\e[0;33m\]' # Yellow
-#txtblu='\[\e[0;34m\]' # Blue
-#txtpur='\[\e[0;35m\]' # Purple
-#txtcyn='\[\e[0;36m\]' # Cyan
-#txtwht='\[\e[0;37m\]' # White
-#bldblk='\[\e[1;30m\]' # Black - Bold
-#bldred='\[\e[1;31m\]' # Red
-#bldgrn='\[\e[1;32m\]' # Green
-#bldylw='\[\e[1;33m\]' # Yellow
-#bldblu='\[\e[1;34m\]' # Blue
-#bldpur='\[\e[1;35m\]' # Purple
-#bldcyn='\[\e[1;36m\]' # Cyan
-#bldwht='\[\e[1;37m\]' # White
-#unkblk='\[\e[4;30m\]' # Black - Underline
-#undred='\[\e[4;31m\]' # Red
-#undgrn='\[\e[4;32m\]' # Green
-#undylw='\[\e[4;33m\]' # Yellow
-#undblu='\[\e[4;34m\]' # Blue
-#undpur='\[\e[4;35m\]' # Purple
-#undcyn='\[\e[4;36m\]' # Cyan
-#undwht='\[\e[4;37m\]' # White
-#bakblk='\[\e[40m\]'   # Black - Background
-#bakred='\[\e[41m\]'   # Red
-#badgrn='\[\e[42m\]'   # Green
-#bakylw='\[\e[43m\]'   # Yellow
-#bakblu='\[\e[44m\]'   # Blue
-#bakpur='\[\e[45m\]'   # Purple
-#bakcyn='\[\e[46m\]'   # Cyan
-#bakwht='\[\e[47m\]'   # White
-#txtrst='\[\e[0m\]'    # Text Reset
+txtblk='\[\e[0;30m\]' # Black - Regular
+txtred='\[\e[0;31m\]' # Red
+txtgrn='\[\e[0;32m\]' # Green
+txtylw='\[\e[0;33m\]' # Yellow
+txtblu='\[\e[0;34m\]' # Blue
+txtpur='\[\e[0;35m\]' # Purple
+txtcyn='\[\e[0;36m\]' # Cyan
+txtwht='\[\e[0;37m\]' # White
+bldblk='\[\e[1;30m\]' # Black - Bold
+bldred='\[\e[1;31m\]' # Red
+bldgrn='\[\e[1;32m\]' # Green
+bldylw='\[\e[1;33m\]' # Yellow
+bldblu='\[\e[1;34m\]' # Blue
+bldpur='\[\e[1;35m\]' # Purple
+bldcyn='\[\e[1;36m\]' # Cyan
+bldwht='\[\e[1;37m\]' # White
+unkblk='\[\e[4;30m\]' # Black - Underline
+undred='\[\e[4;31m\]' # Red
+undgrn='\[\e[4;32m\]' # Green
+undylw='\[\e[4;33m\]' # Yellow
+undblu='\[\e[4;34m\]' # Blue
+undpur='\[\e[4;35m\]' # Purple
+undcyn='\[\e[4;36m\]' # Cyan
+undwht='\[\e[4;37m\]' # White
+bakblk='\[\e[40m\]'   # Black - Background
+bakred='\[\e[41m\]'   # Red
+badgrn='\[\e[42m\]'   # Green
+bakylw='\[\e[43m\]'   # Yellow
+bakblu='\[\e[44m\]'   # Blue
+bakpur='\[\e[45m\]'   # Purple
+bakcyn='\[\e[46m\]'   # Cyan
+bakwht='\[\e[47m\]'   # White
+txtrst='\[\e[0m\]'    # Text Reset
 #
 ## Prompt colours
-#atC="${txtpur}"
-#nameC="${txtpur}"
-#hostC="${txtpur}"
-#pathC="${txtgrn}"
-#gitC="${txtpur}"
-#pointerC="${txtgrn}"
-#normalC="${txtwht}"
+atC="${txtcyn}"
+nameC="${txtcyn}"
+hostC="${txtcyn}"
+pathC="${txtgrn}"
+gitC="${txtcyn}"
+pointerC="${txtgrn}"
+normalC="${txtwht}"
 
 # 12. Root User Prompt Color
 # Changes the color of the prompt when logged in as the root user.
 # This is a safety feature to make it clear when operating with root privileges.
 # The prompt color is set to red for high visibility.
-#if [ "${UID}" -eq "0" ]; then
-#  nameC="${txtred}"
-#fi
+if [ "${UID}" -eq "0" ]; then
+ nameC="${txtred}"
+fi
 #
 
 # Ensure we can use Windows clipboard in bash
@@ -175,10 +175,10 @@ check_and_set_color_prompt() {
     case "$TERM" in
         xterm-color|*-256color)
             force_color_prompt=yes
-            echo "Your terminal supports color. Color prompt enabled."
+            echo "💓 Your terminal supports color. Color prompt enabled."
             ;;
         *)
-            echo "Your terminal does not support color. Default prompt used."
+            echo "💔 Your terminal does not support color. Default prompt used."
             ;;
     esac
 }
@@ -197,9 +197,12 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+	PS1="${nameC}\u${atC}@${hostC}\h:${pathC}\w${pointerC}\n▶${normalC} "
+    # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    # PS1="${pathC}\w ${gitC}\$(gitBranch) ${pointerC}\$${normalC} "
+	PS1="${nameC}\u${atC}@${hostC}\h:${pathC}\w${pointerC}\n▶${normalC} "
+    # PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -227,10 +230,9 @@ fi
 # Notification
 # This line outputs a message to the terminal when the .bashrc file is loaded.
 # It is useful for confirming that the .bashrc file is being sourced correctly.
-echo "~/.bashbackup/.bashrc is loaded"
+echo "✅ bashrc is loaded"
 
 # FUNCTION CALLS BELOW THIS LINE
 
 # check if terminal supports color
 check_and_set_color_prompt
-
