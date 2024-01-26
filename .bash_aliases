@@ -1,10 +1,6 @@
 # 1. Inform user that the bash_aliases are loaded
 echo "~/.bashbackup/.bash_aliases loaded"
 
-# 2. Ensure that the bash_functions are loaded for reference
-# if [ -f ~/.bash_functions ]; then
-source ~/.bashbackup/.bash_functions
-# fi
 
 # 3. List files per line
 alias lf="ls -1ASk"
@@ -71,3 +67,17 @@ alias gitfiles2clip="gitfiles2clip"
 
 # 24. Count files that are hidden only
 alias hiddenfilecount="find . -type f -name '.*' | wc -l"
+
+# 2. Ensure that the bash_functions are loaded for reference
+# if [ -f ~/.bash_functions ]; then
+source ~/.bashbackup/.bash_functions
+# fi
+# 2. Ensure that the bash_functions are loaded for reference
+# if [ -f ~/.bash_functions ]; then
+source ~/.bashbackup/.bash_functions
+# fi
+# 2. Ensure that the bash_functions are loaded for reference
+# if [ -f ~/.bash_functions ]; then
+source ~/.bashbackup/.bash_functions
+# fi
+

@@ -1,7 +1,14 @@
-# 1. Notification
-# This line outputs a message to the terminal when the .bashrc file is loaded.
-# It is useful for confirming that the .bashrc file is being sourced correctly.
-echo "~/.bashbackup/.bashrc is loaded"
+# Check if we are running interactive mode or not
+# 1. Interactive mode check
+case $- in
+    *i*)
+	echo "This is an interactive shell."
+	;;
+      *)
+	echo "This is a non-interactive shell."
+	return
+	;;
+esac
 
 # 2. Vim Keybindings
 # This command enables Vim-style keybindings in the bash shell.
@@ -44,26 +51,28 @@ HISTFILESIZE=2000
 # 8. Terminal Colors for Linux
 # This section sets custom colors for the terminal when using the 'linux' terminal type.
 # It defines colors for different elements like text and background, improving readability and aesthetics.
-if [ "$TERM" = "linux" ]; then
-    echo -en "\e]P0232323" #black
-    echo -en "\e]P82B2B2B" #darkgrey
-    echo -en "\e]P1D75F5F" #darkred
-    echo -en "\e]P9E33636" #red
-    echo -en "\e]P287AF5F" #darkgreen
-    echo -en "\e]PA98E34D" #green
-    echo -en "\e]P3D7AF87" #brown
-    echo -en "\e]PBFFD75F" #yellow
-    echo -en "\e]P48787AF" #darkblue
-    echo -en "\e]PC7373C9" #blue
-    echo -en "\e]P5BD53A5" #darkmagenta
-    echo -en "\e]PDD633B2" #magenta
-    echo -en "\e]P65FAFAF" #darkcyan
-    echo -en "\e]PE44C9C9" #cyan
-    echo -en "\e]P7E5E5E5" #lightgrey
-    echo -en "\e]PFFFFFFF" #white
-    clear #for background artifacting
-fi
-# Section 9: Custom Terminal Prompt
+# Comment out/in depending on if you want to use a theme/scheme
+# if [ "$TERM" = "linux" ]; then
+#     echo -en "\e]P0232323" #black
+#     echo -en "\e]P82B2B2B" #darkgrey
+#     echo -en "\e]P1D75F5F" #darkred
+#     echo -en "\e]P9E33636" #red
+#     echo -en "\e]P287AF5F" #darkgreen
+#     echo -en "\e]PA98E34D" #green
+#     echo -en "\e]P3D7AF87" #brown
+#     echo -en "\e]PBFFD75F" #yellow
+#     echo -en "\e]P48787AF" #darkblue
+#     echo -en "\e]PC7373C9" #blue
+#     echo -en "\e]P5BD53A5" #darkmagenta
+#     echo -en "\e]PDD633B2" #magenta
+#     echo -en "\e]P65FAFAF" #darkcyan
+#     echo -en "\e]PE44C9C9" #cyan
+#     echo -en "\e]P7E5E5E5" #lightgrey
+#     echo -en "\e]PFFFFFFF" #white
+#     clear #for background artifacting
+# fi
+
+# 9. Custom Terminal Prompt
 # Various options for customizing the bash prompt (PS1).
 # Includes settings for window title, newline, colors, and the format of the prompt.
 # Users can uncomment the preferred configuration.
@@ -147,3 +156,81 @@ else
     # For other systems, adjust as necessary
     export CLIP_CMD="/c/Windows/System32/clip.exe"  # assuming 'clip' is available in the PATH
 fi
+
+# 14. Check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# 15. Make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# 16. Set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# 17. Set variables identifying the terminal environment
+#     (used in the prompt)
+check_and_set_color_prompt() {
+    case "$TERM" in
+        xterm-color|*-256color)
+            force_color_prompt=yes
+            echo "Your terminal supports color. Color prompt enabled."
+            ;;
+        *)
+            echo "Your terminal does not support color. Default prompt used."
+            ;;
+    esac
+}
+
+# 18. Set the terminal color prompt
+# 🕮 <lunde> 31628a47-2029-40d7-bd56-3d954b8f6d7c.md
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# Notification
+# This line outputs a message to the terminal when the .bashrc file is loaded.
+# It is useful for confirming that the .bashrc file is being sourced correctly.
+echo "~/.bashbackup/.bashrc is loaded"
+
+# FUNCTION CALLS BELOW THIS LINE
+
+# check if terminal supports color
+check_terminal_color_support
+
