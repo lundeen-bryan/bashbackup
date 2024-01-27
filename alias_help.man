@@ -1,0 +1,96 @@
+.TH ALIAS_HELP 1 "January 2024" "lundeen-bryan"
+.SH NAME
+alias_help \- display a list of user-defined aliases for common commands
+.SH SYNOPSIS
+.B alias_help
+.SH DESCRIPTION
+.B alias_help
+displays a list of user-defined aliases that
+.br
+can be used to simplify and enhance common
+.br
+command-line tasks. These aliases have been
+.br
+created to improve productivity and streamline
+.br
+the use of the terminal.
+.TP
+1. \fBlf\fR
+List files vertically in alphabetic order
+.br
+exclude hidden files.
+.TP
+2. \fBlfa\fR
+List files vertically, including hidden files.
+.TP
+3. \fB:q\fR
+Quit bash using a Vim-like command.
+.TP
+4. \fBclr\fR
+Clear the terminal screen.
+.TP
+5. \fBipy\fR
+Run IPython with Vim keybindings.
+.TP
+6. \fBgh\fR
+Grep through command history
+.br
+(note: add search term in single quotes as a
+.br
+parameter).
+.TP
+7. \fBhist\fR
+Display command history.
+.TP
+8. \fBlistsize\fR
+List files sorted by size.
+.TP
+9. \fBlistmod\fR
+List files sorted by modification date.
+.TP
+10. \fBfilecount\fR
+Count the number of files in the current
+.br
+directory.
+.TP
+11. \fBve\fR
+Create a Python virtual environment (see menv).
+.TP
+12. \fBva\fR
+Activate the Python virtual environment (see menv).
+.TP
+13. \fBalias_help\fR
+Show the user all available aliases.
+.TP
+14. \fBloginMySQL\fR
+Log in to MySQL.
+.TP
+15. \fB..\fR
+Navigate up one directory level.
+.TP
+16. \fBgs\fR
+Show Git status.
+.TP
+17. \fB:e\fR
+Open files in Windows Explorer.
+.TP
+18. \fBdocs\fR
+Shortcut to navigate to the Documents folder.
+.TP
+19. \fBdl\fR
+Shortcut to navigate to the Downloads folder.
+.TP
+20. \fBmenv\fR
+Activate the virtual environment if created in
+.br
+micromamba.
+.TP
+21. \fBgitfiles2clip\fR
+Copy all files changed in Git to the clipboard.
+.TP
+22. \fBhiddenfilecount\fR
+Count only hidden files.
+.SH AUTHOR
+This list of aliases was created by lundeen-bryan.
+.SH SEE ALSO
+.BR bash (1)

@@ -1,8 +1,8 @@
-# 3. List files per line
-alias lf="ls -1ASk"
+# 3. List files vertically not including hidden files
+alias lf="ls -1"
 
-# 4. List files per line including hidden files
-alias lfa="ls -1ASka"
+# 4. List files vertically including hidden files
+alias lfa="ls -a1"
 
 # 5. Quit bash using a Vim-like command
 alias :q="exit"
