@@ -56,7 +56,7 @@ alias docs='cd ~/documents/'
 alias dl='cd ~/downloads/'
 
 # 22. Activate the virtual environment if created in micromamba
-alias menv="menv"
+alias menv="menv" # this calls a function that activates the enviroment
 
 # 23. Copy all files changed in Git to the clipboard
 alias gitfiles2clip="gitfiles2clip"
