@@ -41,7 +41,40 @@ gitfiles2clip() {
     echo "Files modified in git have been copied to the clipboard."
 }
 
+fix_filename() {
+    # Check if a file name is provided as an argument
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: fix_filename <filename>"
+        return 1
+    fi
+
+    local file="$1"
+
+    # Check if the file exists
+    if [[ ! -e $file ]]; then
+        echo "Error: File does not exist."
+        return 1
+    fi
+
+    # Replace '+' and '-' with '_' and make lowercase, then store the new name
+    local new_name=$(echo "$file" | tr '+-' '__' | tr '[:upper:]' '[:lower:]')
+
+    # Check if the file and new_name are different to avoid renaming the same file
+    if [[ "$file" != "$new_name" ]]; then
+        # Check if a file with the new_name already exists to avoid overwriting
+        if [[ -e $new_name ]]; then
+            echo "Error: '$new_name' already exists. Skipping '$file'."
+        else
+            # Rename the file
+            mv "$file" "$new_name"
+            echo "Renamed '$file' to '$new_name'"
+        fi
+    fi
+}
+
+
 # NOTIFICATIONS #################################
 
 echo "✅ bash_functions loaded"
 echo "👀 To see all aliases type alias_help in the terminal."
+
