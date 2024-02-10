@@ -56,8 +56,14 @@ fix_filename() {
         return 1
     fi
 
-    # Replace '+' and '-' with '_' and make lowercase, then store the new name
-    local new_name=$(echo "$file" | tr '+-' '__' | tr '[:upper:]' '[:lower:]')
+    # Replace '+' and '-' with '_', spaces with '_', and make lowercase, then store the new name
+    local new_name=$(echo "$file" | tr '+- ' '_' | tr '[:upper:]' '[:lower:]')
+
+    # Ensure the new name is not empty (which could happen with invalid input or unexpected errors)
+    if [[ -z "$new_name" ]]; then
+        echo "Error: New filename for '$file' is empty. Skipping."
+        return 1
+    fi
 
     # Check if the file and new_name are different to avoid renaming the same file
     if [[ "$file" != "$new_name" ]]; then
