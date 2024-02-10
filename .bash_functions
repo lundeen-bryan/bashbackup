@@ -42,39 +42,55 @@ gitfiles2clip() {
 }
 
 fix_filename() {
-    # Check if a file name is provided as an argument
     if [[ $# -eq 0 ]]; then
-        echo "Usage: fix_filename <filename>"
+        echo "Usage: fix_filename <filename or directory> [recursive true/false]"
         return 1
     fi
 
-    local file="$1"
+    local target="$1"
+    local recursive="${2:-false}" # Default to false if not provided
 
-    # Check if the file exists
-    if [[ ! -e $file ]]; then
-        echo "Error: File does not exist."
-        return 1
-    fi
+    rename_item() {
+        local item="$1"
+        # Use sed to replace '+' and '-', spaces with '_', and make lowercase
+        local new_name=$(echo "$item" | sed -e 's/[+ -]/_/g' | tr '[:upper:]' '[:lower:]')
 
-    # Replace '+' and '-' with '_', spaces with '_', and make lowercase, then store the new name
-    local new_name=$(echo "$file" | tr '+- ' '_' | tr '[:upper:]' '[:lower:]')
-
-    # Ensure the new name is not empty (which could happen with invalid input or unexpected errors)
-    if [[ -z "$new_name" ]]; then
-        echo "Error: New filename for '$file' is empty. Skipping."
-        return 1
-    fi
-
-    # Check if the file and new_name are different to avoid renaming the same file
-    if [[ "$file" != "$new_name" ]]; then
-        # Check if a file with the new_name already exists to avoid overwriting
-        if [[ -e $new_name ]]; then
-            echo "Error: '$new_name' already exists. Skipping '$file'."
-        else
-            # Rename the file
-            mv "$file" "$new_name"
-            echo "Renamed '$file' to '$new_name'"
+        if [[ -z "$new_name" ]]; then
+            echo "Error: New name for '$item' is empty. Skipping."
+            return 1
         fi
+
+        if [[ "$item" != "$new_name" ]]; then
+            if [[ -e $new_name ]]; then
+                echo "Error: '$new_name' already exists. Skipping '$item'."
+            else
+                mv -- "$item" "$new_name"
+                echo "Renamed '$item' to '$new_name'"
+            fi
+        fi
+    }
+
+    if [[ -d $target ]]; then
+        if [[ $recursive == true ]]; then
+            find "$target" -depth ! -path "$target" -print0 | while IFS= read -r -d $'\0' item; do
+                dir_path=$(dirname "$item")
+                base_name=$(basename "$item")
+                pushd "$dir_path" > /dev/null
+                rename_item "$base_name"
+                popd > /dev/null
+            done
+        else
+            dir_path=$(dirname "$target")
+            base_name=$(basename "$target")
+            pushd "$dir_path" > /dev/null
+            rename_item "$base_name"
+            popd > /dev/null
+        fi
+    elif [[ -e $target ]]; then
+        rename_item "$target"
+    else
+        echo "Error: '$target' does not exist."
+        return 1
     fi
 }
 
