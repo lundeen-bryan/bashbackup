@@ -31,6 +31,13 @@ else
 	echo "⛔ Warning: Unable to load .bash_aliases from ~/.bashbackup/"
 fi
 
+# bash_functions loaded
+if [ -f ~/.bashbackup/.bash_functions ]; then
+    . ~/.bashbackup/.bash_functions
+else
+	echo "⛔ Warning: Unable to load .bash_aliases from ~/.bashbackup/"
+fi
+
 # 5. History Control
 # This sets the 'ignoreboth' option for the command history.
 # 'ignoreboth' is shorthand for 'ignorespace' and 'ignoredups',

@@ -65,7 +65,7 @@ alias gitfiles2clip="gitfiles2clip"
 alias hiddenfilecount="find . -type f -name '.*' | wc -l"
 
 # 2. Ensure that the bash_functions are loaded for reference
-source ~/.bashbackup/.bash_functions
+# source ~/.bashbackup/.bash_functions
 
 # NOTIFICATIONS
 
