@@ -11,7 +11,7 @@ alias :q="exit"
 alias clr="clear"
 
 # 7. Run IPython with Vim keybindings
-alias ipy="ipython --TerminalInteractiveShell.editing_mode='vi'"
+alias ipython="ipython --TerminalInteractiveShell.editing_mode='vi'"
 
 # 8. Grep through command history
 alias gh="history|grep"
